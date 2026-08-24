@@ -18,7 +18,6 @@ env:
   EKS_CLUSTER_NAME: cluster
   ECR_REPOSITORY: backend
   BACKEND_DIRECTORY: starter/backend
-  PIPENV_VENV_IN_PROJECT: "1"
 
 jobs:
   lint:
@@ -39,10 +38,9 @@ jobs:
         with:
           path: |
             ~/.cache/pip
-            starter/backend/.venv
-          key: ${{ runner.os }}-backend-pipenv-${{ hashFiles('starter/backend/Pipfile.lock') }}
+          key: ${{ runner.os }}-backend-pip-v2-${{ hashFiles('starter/backend/Pipfile.lock') }}
           restore-keys: |
-            ${{ runner.os }}-backend-pipenv-
+            ${{ runner.os }}-backend-pip-v2-
       - name: Install Pipenv
         run: python -m pip install --upgrade pip pipenv
       - name: Install dependencies
@@ -68,10 +66,9 @@ jobs:
         with:
           path: |
             ~/.cache/pip
-            starter/backend/.venv
-          key: ${{ runner.os }}-backend-pipenv-${{ hashFiles('starter/backend/Pipfile.lock') }}
+          key: ${{ runner.os }}-backend-pip-v2-${{ hashFiles('starter/backend/Pipfile.lock') }}
           restore-keys: |
-            ${{ runner.os }}-backend-pipenv-
+            ${{ runner.os }}-backend-pip-v2-
       - name: Install Pipenv
         run: python -m pip install --upgrade pip pipenv
       - name: Install dependencies
